@@ -59,7 +59,6 @@ import com.android.systemui.keyguard.ScreenLifecycle;
 import com.android.systemui.keyguard.WakefulnessLifecycle;
 import com.android.systemui.keyguard.ui.viewmodel.LightRevealScrimViewModel;
 import com.android.systemui.bouncer.domain.interactor.AlternateBouncerInteractor;
-import com.android.systemui.model.SysUiState;
 import com.android.systemui.navigationbar.NavigationBarController;
 import com.android.systemui.notetask.NoteTaskController;
 import com.android.systemui.plugins.ActivityStarter;
@@ -120,10 +119,8 @@ import com.android.systemui.statusbar.phone.StatusBarSignalPolicy;
 import com.android.systemui.statusbar.phone.StatusBarTouchableRegionManager;
 import com.android.systemui.statusbar.phone.ongoingcall.OngoingCallController;
 import com.android.systemui.statusbar.policy.BatteryController;
-import com.android.systemui.statusbar.policy.BurnInProtectionController;
 import com.android.systemui.statusbar.policy.ConfigurationController;
 import com.android.systemui.statusbar.policy.DeviceProvisionedController;
-import com.android.systemui.statusbar.policy.FlashlightController;
 import com.android.systemui.statusbar.policy.ExtensionController;
 import com.android.systemui.statusbar.policy.HeadsUpManager;
 import com.android.systemui.statusbar.policy.KeyguardStateController;
@@ -131,7 +128,6 @@ import com.android.systemui.statusbar.policy.UserInfoControllerImpl;
 import com.android.systemui.statusbar.policy.UserSwitcherController;
 import com.android.systemui.statusbar.window.StatusBarWindowController;
 import com.android.systemui.statusbar.window.StatusBarWindowStateController;
-import com.android.systemui.tuner.TunerService;
 import com.android.systemui.util.kotlin.JavaAdapter;
 import com.android.systemui.util.WallpaperController;
 import com.android.systemui.util.concurrency.DelayableExecutor;
@@ -224,7 +220,6 @@ public class CentralSurfacesGoogle extends CentralSurfacesImpl {
             NavigationBarController navigationBarController,
             AccessibilityFloatingMenuController accessibilityFloatingMenuController,
             Lazy<AssistManager> assistManagerLazy,
-            FlashlightController flashlightController,
             ConfigurationController configurationController,
             NotificationShadeWindowController notificationShadeWindowController,
             Lazy<NotificationShadeWindowViewController> notificationShadeWindowViewControllerLazy,
@@ -284,9 +279,6 @@ public class CentralSurfacesGoogle extends CentralSurfacesImpl {
             Provider<FingerprintManager> fingerprintManager,
             ActivityStarter activityStarter,
             SceneContainerFlags sceneContainerFlags,
-            TunerService tunerService,
-            @Main Handler refreshNavbarHandler,
-            BurnInProtectionController burnInProtectionController,
             Optional<ReverseChargingViewController> reverseChargingViewControllerOptional,
             WallpaperNotifier wallpaperNotifier,
             SmartSpaceController smartSpaceController,
@@ -300,7 +292,7 @@ public class CentralSurfacesGoogle extends CentralSurfacesImpl {
                 javaAdapter, uiBgExecutor, shadeSurface, notificationMediaManager, notificationLockscreenUserManagerGoogle, remoteInputManager, 
                 quickSettingsController, userSwitcherController, batteryController, colorExtractor, screenLifecycle, wakefulnessLifecycle, 
                 powerInteractor, statusBarStateController, bubblesOptional, noteTaskControllerLazy, deviceProvisionedController, 
-                navigationBarController, accessibilityFloatingMenuController, assistManagerLazy, flashlightController, configurationController, notificationShadeWindowController, 
+                navigationBarController, accessibilityFloatingMenuController, assistManagerLazy, configurationController, notificationShadeWindowController, 
                 notificationShadeWindowViewControllerLazy, notificationStackScrollLayoutController, notificationPresenterLazy, notificationActivityStarterLazy, 
                 notifLaunchAnimatorControllerProvider, dozeParameters, scrimController, biometricUnlockControllerLazy, authRippleController, 
                 dozeServiceHost, backActionInteractor, powerManager, dozeScrimController, volumeComponent, commandQueue, commandQueueCallbacksLazy, 
@@ -310,7 +302,7 @@ public class CentralSurfacesGoogle extends CentralSurfacesImpl {
                 screenOffAnimationController, wallpaperController, statusBarHideIconsForBouncerManager, lockscreenShadeTransitionController, featureFlags, 
                 keyguardUnlockAnimationController, delayableExecutor, messageRouter, wallpaperManager, startingSurfaceOptional, activityLaunchAnimator, jankMonitor, 
                 deviceStateManager, wiredChargingRippleController, dreamManager, cameraLauncherLazy, lightRevealScrimViewModelLazy, lightRevealScrim, 
-                alternateBouncerInteractor, userTracker, fingerprintManager, activityStarter, sceneContainerFlags, tunerService, refreshNavbarHandler, burnInProtectionController);
+                alternateBouncerInteractor, userTracker, fingerprintManager, activityStarter, sceneContainerFlags);
         mContext = context;
         mBatteryStateChangeCallback = new BatteryController.BatteryStateChangeCallback() {
             @Override

@@ -1,6 +1,4 @@
 # Inherit from pixel-framework config
-TARGET_INCLUDE_PIXEL_FRAMEWORKS ?= true
-ifeq ($(TARGET_INCLUDE_PIXEL_FRAMEWORKS),true)
 PRODUCT_PACKAGES += \
     SystemUIGoogle \
     SettingsGoogle
@@ -11,4 +9,3 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
     SystemUIGoogle
 
 $(call inherit-product, vendor/google/pixel-framework/common/common-vendor.mk)
-endif
